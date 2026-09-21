@@ -1,0 +1,20 @@
+.login-container{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#f8f9fa
+}
+
+.login-card{
+  width:320px;
+  padding:20px;
+  border-radius:8px
+}
+
+.login-title{
+  text-align:center;
+  margin-bottom:15px
+}
+
+.btn-full{width:100%}
