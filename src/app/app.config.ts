@@ -1,6 +1,5 @@
 import { ApplicationConfig, DEFAULT_CURRENCY_CODE, InjectionToken, LOCALE_ID, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
 import { routes } from './app.routes';
 import { CurrencyPipe } from '@angular/common';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
