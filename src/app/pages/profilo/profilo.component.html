@@ -1,0 +1,33 @@
+<div class="container mt-5">
+  @if (profilo$ | async; as utente) {
+  <h2 class="mb-4">Profilo</h2>
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <dl class="row mb-0">
+        <dt class="col-sm-4">ID conto</dt>
+        <dd class="col-sm-8">{{ utente.id }}</dd>
+
+        <dt class="col-sm-4">Email</dt>
+        <dd class="col-sm-8">{{ utente.email }}</dd>
+
+        <dt class="col-sm-4">Nome</dt>
+        <dd class="col-sm-8">{{ utente.nomeTitolare }}</dd>
+
+        <dt class="col-sm-4">Cognome</dt>
+        <dd class="col-sm-8">{{ utente.cognomeTitolare }}</dd>
+
+        <dt class="col-sm-4">Data apertura</dt>
+        <dd class="col-sm-8">{{ utente.dataApertura | date: 'dd/MM/yyyy' }}</dd>
+
+        <dt class="col-sm-4">IBAN</dt>
+        <dd class="col-sm-8 mb-0">{{ utente.iban }}</dd>
+      </dl>
+    </div>
+  </div>
+
+  <button (click)="apriModalePassword()">Modifica password</button>
+  } @else {
+  <div class="text-center text-muted">Devi essere loggato</div>
+  }
+</div>

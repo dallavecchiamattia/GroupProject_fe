@@ -1,48 +1,44 @@
 import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { catchError, of, Subject, throwError, timer } from 'rxjs';
+import { Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-
-const LOGIN_TIMEOUT_MS = 30_000;
+import { catchError, throwError } from 'rxjs';
 
 @Component({
-  selector: 'app-login',
-  imports: [ReactiveFormsModule, RouterLink],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
+  selector: 'app-register',
+  imports: [ReactiveFormsModule],
+  templateUrl: './register.component.html',
+  styleUrl: './register.component.css',
 })
-export class LoginComponent {
+export class RegisterComponent {
   protected fb = inject(FormBuilder);
   protected authSrv = inject(AuthService);
   private destroyRef = inject(DestroyRef);
   private router = inject(Router);
 
-  loginForm = this.fb.group({
+
+  registerForm = this.fb.group({
     email: ['', { validators: [Validators.required] }],
-    password: ['', { validators: [Validators.required] }]
+    password: ['', { validators: [Validators.required] }],
+    confermaNuovaPassword: ['', { validators: [Validators.required] }],
+    nomeTitolare: ['', { validators: [Validators.required] }],
+    cognomeTitolare: ['', { validators: [Validators.required] }]
   });
 
   errorMessage = signal<string | null>(null);
 
   ngOnInit() {
-    this.loginForm.valueChanges
+    this.registerForm.valueChanges
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => this.errorMessage.set(null))
-
-    timer(LOGIN_TIMEOUT_MS)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(() => {
-        this.loginForm.reset();
-        this.errorMessage.set('Hai impiegato troppo tempo per effettuare il login. Riprova.');
-      });
   }
 
-  login() {
-    if (this.loginForm.valid) {
-      const { email, password } = this.loginForm.value;
-      this.authSrv.login(email!, password!)
+
+  register() {
+    if (this.registerForm.valid) {
+      const { email, password, confermaNuovaPassword, nomeTitolare, cognomeTitolare } = this.registerForm.value;
+      this.authSrv.register(email!, password!, confermaNuovaPassword!, nomeTitolare!, cognomeTitolare!)
         .pipe(
           catchError(response => {
             const message = response.error.message;
@@ -51,7 +47,7 @@ export class LoginComponent {
           })
         )
         .subscribe(() => {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/login']);
         });
     }
   }

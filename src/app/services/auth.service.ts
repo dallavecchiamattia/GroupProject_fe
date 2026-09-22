@@ -41,13 +41,27 @@ export class AuthService {
       )
   }
 
-  login(username: string, password: string) {
-    return this.http.post<{ user: User, token: string }>('/api/login', { username, password })
+  login(email: string, password: string) {
+    return this.http.post<{ user: User, token: string }>('/api/login', { email, password })
       .pipe(
         tap(res => this.jwtSrv.setToken(res.token)),
         map(res => res.user),
         tap(user => this._currentUser.set(user))
       );
+  }
+
+  register(email: string, password: string, confermaNuovaPassword: string, nomeTitolare: string, cognomeTitolare: string) {
+    return this.http.post<{ user: User, token: string }>('/api/register', {
+      email,
+      password,
+      confermaNuovaPassword,
+      nomeTitolare,
+      cognomeTitolare,
+    }).pipe(
+      tap(res => this.jwtSrv.setToken(res.token)),
+      map(res => res.user),
+      tap(user => this._currentUser.set(user))
+    );
   }
 
   logout() {

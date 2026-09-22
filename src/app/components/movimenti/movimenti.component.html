@@ -1,0 +1,7 @@
+<div class="row row-cols-1 row-cols-md-4 g-6 mt-5">
+  @for(movimenti of movimenti(); track movimenti.id) {
+  <div class="col">
+    <app-movimento-card [movimenti]="movimenti"></app-movimento-card>
+  </div>
+  }
+</div>

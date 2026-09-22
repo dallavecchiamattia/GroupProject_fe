@@ -1,0 +1,25 @@
+<div class="container mt-5">
+  @if (account$ | async; as account) {
+  <h2 class="mb-4">Benvenuto {{ account.utente.nomeTitolare }} {{ account.utente.cognomeTitolare }}</h2>
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <h6 class="card-subtitle mb-2 text-muted">Saldo disponibile</h6>
+      <p class="card-text fs-3 fw-semibold mb-0">{{ account.saldo | currency: 'EUR' }}</p>
+    </div>
+  </div>
+
+  <h5 class="mb-3">Ultimi movimenti</h5>
+
+  @if (account.ultimiMovimenti.length) {
+  <app-movimenti [movimentiInput]="account.ultimiMovimenti" />
+  }
+  @else {
+  <p class="text-muted">Nessun movimento disponibile.</p>
+  }
+  } @else {
+  <div class="text-center text-muted">Per accedere devi essere loggato</div>
+  }
+
+
+</div>

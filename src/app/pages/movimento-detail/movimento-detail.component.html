@@ -1,0 +1,50 @@
+<div class="container mt-4">
+
+  <a [routerLink]="['/home']" class="btn btn-outline-secondary mb-4">
+    ← Torna alla Home
+  </a>
+
+  @if (movimento$ | async; as movimento) {
+  <div class="card">
+    <div class="card-header">
+      <h2>Dettaglio movimento</h2>
+    </div>
+
+    <div class="card-body">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <strong>ID Movimento</strong>
+          <p>{{ movimento.id }}</p>
+        </div>
+        <div class="col-md-6">
+          <strong>ID Conto Corrente</strong>
+          <p>{{ movimento.contoCorrenteId }}</p>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <strong>Data</strong>
+          <p>{{ movimento.data | date:'dd/MM/yyyy' }}</p>
+        </div>
+        <div class="col-md-6">
+          <strong>Categoria</strong>
+          <p>{{ movimento.categoria.nomeCategoria }}</p>
+        </div>
+      </div>
+      <div class="mb-3">
+        <strong>Categoria Movimento ID</strong>
+        <p>{{ movimento.categoriaMovimentoId }}</p>
+      </div>
+
+      <div class="mb-3">
+        <strong>Descrizione Estesa</strong>
+        <p>{{ movimento.descrizioneEstesa }}</p>
+      </div>
+    </div>
+  </div>
+  } @else {
+  <div class="alert alert-info">Caricamento del movimento...</div>
+  }
+
+</div>
