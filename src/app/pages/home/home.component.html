@@ -1,25 +1,36 @@
-<div class="container mt-5">
+<div class="home-page">
   @if (account$ | async; as account) {
-  <h2 class="mb-4">Benvenuto {{ account.utente.nomeTitolare }} {{ account.utente.cognomeTitolare }}</h2>
-
-  <div class="card mb-4">
-    <div class="card-body">
-      <h6 class="card-subtitle mb-2 text-muted">Saldo disponibile</h6>
-      <p class="card-text fs-3 fw-semibold mb-0">{{ account.saldo | currency: 'EUR' }}</p>
+  <div class="welcome-row">
+    <div>
+      <p class="welcome-eyebrow">Bentornato</p>
+      <h2 class="welcome-title">{{ account.utente.nomeTitolare }} {{ account.utente.cognomeTitolare }}</h2>
     </div>
   </div>
 
-  <h5 class="mb-3">Ultimi movimenti</h5>
+  <div class="balance-card">
+    <div class="balance-glow"></div>
+    <h6 class="balance-label">Saldo disponibile</h6>
+    <p class="balance-amount">{{ account.saldo | currency: 'EUR' }}</p>
+  </div>
+
+  <div class="section-header">
+    <h5 class="section-title">Ultimi movimenti</h5>
+    <a class="section-link" routerLink="/movimenti">Vedi tutti →</a>
+  </div>
 
   @if (account.ultimiMovimenti.length) {
   <app-movimenti [movimentiInput]="account.ultimiMovimenti" />
   }
   @else {
-  <p class="text-muted">Nessun movimento disponibile.</p>
+  <div class="empty-state">
+    <span class="empty-icon"></span>
+    <p>Nessun movimento disponibile.</p>
+  </div>
   }
   } @else {
-  <div class="text-center text-muted">Per accedere devi essere loggato</div>
+  <div class="not-logged">
+    <span class="lock-icon"></span>
+    <p>Per accedere devi essere loggato</p>
+  </div>
   }
-
-
 </div>

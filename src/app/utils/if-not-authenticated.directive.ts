@@ -3,20 +3,20 @@ import { AuthService } from '../services/auth.service';
 
 @Directive({
   selector: '[ifNotAuthenticated]',
-  standalone: true
+  standalone: true,
 })
 export class IfNotAuthenticatedDirective {
-  private authSrv = inject(AuthService);
-  private templateRef = inject(TemplateRef<unknown>);
-  private viewContainer = inject(ViewContainerRef);
+  private templateRef = inject(TemplateRef<any>);
+  private vcr = inject(ViewContainerRef);
+  private authService = inject(AuthService);
 
   constructor() {
     effect(() => {
-      // Mostra l'elemento solo se NON è autenticato
-      if (!this.authSrv.isAuthenticated()) {
-        this.viewContainer.createEmbeddedView(this.templateRef);
-      } else {
-        this.viewContainer.clear();
+      const isAuth = this.authService.isAuthenticated();
+
+      this.vcr.clear();
+      if (!isAuth) {
+        this.vcr.createEmbeddedView(this.templateRef);
       }
     });
   }

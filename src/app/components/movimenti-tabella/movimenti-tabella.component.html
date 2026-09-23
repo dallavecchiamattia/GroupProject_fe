@@ -1,0 +1,30 @@
+<div class="table-responsive">
+  <table class="table table-hover">
+
+    <thead>
+      <tr>
+        <th>Categoria</th>
+        <th>Importo</th>
+        <th>Descrizione</th>
+        <th>Data</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      @for (movimento of movimenti(); track movimento.id) {
+      <tr>
+        <td>{{ movimento.categoria.nomeCategoria }}</td>
+
+        <td>{{ movimento.importo | currency:'EUR' }}</td>
+
+        <td>{{ movimento.descrizioneEstesa }}</td>
+
+        <td>{{ movimento.data }}</td>
+      </tr>
+      }
+
+    </tbody>
+
+  </table>
+</div>

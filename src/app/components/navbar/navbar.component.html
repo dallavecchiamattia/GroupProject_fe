@@ -1,66 +1,59 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-4 py-3">
-  <div class="container-fluid">
-    <a class="navbar-brand fs-5 text-primary" href="#">
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a class="navbar-brand" [routerLink]="['/']">
       Banca Lume
     </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <div class="navbar-content">
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-lg-2">
-
-
-        <!--Mostrato solo se AUTENTICATO -->
-        <li class="nav-item" *ifAuthenticated>
-          <a [routerLink]="['/movimenti']" class="nav-link px-3">
-            Movimenti
-          </a>
+      @if (authService.isAuthenticated()) {
+      <ul class="navbar-links">
+        <li>
+          <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">Home</a>
         </li>
-
-        <li class="nav-item" *ifAuthenticated>
-          <a [routerLink]="['/ricarica']" class="nav-link px-3">
-            Ricarica
-          </a>
+        <li>
+          <a class="nav-link" [routerLink]="['/movimenti']" routerLinkActive="active">Movimenti</a>
         </li>
-
-        <li class="nav-item" *ifAuthenticated>
-          <a [routerLink]="['/bonifici']" class="nav-link px-3">
-            Bonifico
-          </a>
+        <li>
+          <a class="nav-link" [routerLink]="['/ricarica']" routerLinkActive="active">Ricarica</a>
+        </li>
+        <li>
+          <a class="nav-link" [routerLink]="['/bonifici']" routerLinkActive="active">Bonifico</a>
         </li>
       </ul>
 
-      <!-- Dropdown Utente: Mostrato solo se AUTENTICATO -->
-      <div ngbDropdown class="d-inline-block" *ifAuthenticated>
-        <button type="button" class="btn d-flex align-items-center gap-2 border-0 bg-transparent" id="userMenu"
-          ngbDropdownToggle>
-          <span class="text-dark fw-medium">{{ authService.currentUser()?.nomeTitolare }} {{
-            authService.currentUser()?.cognomeTitolare }}</span>
+      <div ngbDropdown class="user-dropdown">
+        <button type="button" class="user-btn" id="userMenu" ngbDropdownToggle>
+          @if (authService.currentUser(); as user) {
+          <span class="user-avatar">{{ user.nomeTitolare[0] }}{{ user.cognomeTitolare[0] }}</span>
+          <span class="user-name">
+            {{ user.nomeTitolare }} {{ user.cognomeTitolare }}
+          </span>
+          }
         </button>
-        <div ngbDropdownMenu aria-labelledby="userMenu">
-          <a [routerLink]="['/home']" ngbDropdownItem class="d-flex align-items-center gap-2">
-            <i class="bi bi-house"></i>
+
+        <div ngbDropdownMenu class="user-menu" aria-labelledby="userMenu">
+          <a class="menu-item" [routerLink]="['/home']" ngbDropdownItem>
             Area personale
           </a>
-          <a [routerLink]="['/profilo']" ngbDropdownItem class="d-flex align-items-center gap-2">
-            <i class="bi bi-person"></i>
+
+          <a class="menu-item" [routerLink]="['/profilo']" ngbDropdownItem>
             Profilo
           </a>
-          <div class="dropdown-divider"></div>
-          <button class="dropdown-item d-flex align-items-center gap-2 text-danger fw-semibold"
-            (click)="authService.logout()">
-            <i class="bi bi-box-arrow-right"></i>
+
+          <div class="menu-divider"></div>
+
+          <button class="menu-item logout" (click)="authService.logout()">
             Logout
           </button>
         </div>
       </div>
-
-      <!-- Pulsante Login: Mostrato solo se NON AUTENTICATO -->
-      <a [routerLink]="['/login']" class="btn btn-primary btn-sm px-3" *ifNotAuthenticated>
+      } @else {
+      <a class="login-btn" [routerLink]="['/login']">
         Login
       </a>
+      }
+
     </div>
   </div>
 </nav>

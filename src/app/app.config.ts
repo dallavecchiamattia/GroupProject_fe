@@ -4,6 +4,9 @@ import { routes } from './app.routes';
 import { CurrencyPipe } from '@angular/common';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { authInterceptor } from './utils/auth.interceptor';
+import { provideAppInitializer, inject } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
+import { AuthService } from './services/auth.service';
 
 export const DEFAULT_COUNTRY_CODE = new InjectionToken<string>('DEFAULT_COUNTRY_CODE');
 
@@ -15,6 +18,10 @@ export const appConfig: ApplicationConfig = {
     { provide: LOCALE_ID, useValue: 'it-IT' },
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' },
     CurrencyPipe,
-    { provide: DEFAULT_COUNTRY_CODE, useValue: 'IT' }
+    { provide: DEFAULT_COUNTRY_CODE, useValue: 'IT' },
+    provideAppInitializer(() => {
+      const authService = inject(AuthService);
+      return firstValueFrom(authService.fetchUser());
+    }),
   ]
 };

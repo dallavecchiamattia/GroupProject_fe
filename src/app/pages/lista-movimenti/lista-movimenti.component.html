@@ -1,5 +1,19 @@
 <h2 class="mb-4">I tuoi movimenti</h2>
 
+
+<div class="d-flex gap-2 mb-3">
+
+  <button class="btn btn-outline-success" (click)="esportaCSV()">
+    Esporta CSV
+  </button>
+
+  <button class="btn btn-outline-primary" (click)="esportaExcel()">
+    Esporta Excel
+  </button>
+
+</div>
+
+
 <div class="card mb-4">
   <div class="card-body">
 
@@ -12,6 +26,7 @@
         </label>
 
         <select id="categoria" class="form-select" [(ngModel)]="categoriaId">
+
           <option value="">Tutte le categorie</option>
 
           @for (categoria of categorie; track categoria.id) {
@@ -19,6 +34,7 @@
             {{ categoria.nomeCategoria }}
           </option>
           }
+
         </select>
       </div>
 
@@ -42,6 +58,7 @@
 
       <!-- Pulsanti -->
       <div class="col-md-2 d-flex align-items-end gap-2">
+
         <button class="btn btn-primary" (click)="applicaFiltri()">
           Filtra
         </button>
@@ -49,6 +66,7 @@
         <button class="btn btn-outline-secondary" (click)="resetFiltri()">
           Reset
         </button>
+
       </div>
 
     </div>
@@ -56,13 +74,8 @@
   </div>
 </div>
 
-<div class="row row-cols-1 row-cols-md-4 g-6 mt-5">
-
-  @for (movimento of movimenti(); track movimento.id) {
-  <div class="col">
-    <app-movimento-card [movimenti]="movimento">
-    </app-movimento-card>
-  </div>
-  }
-
+<!-- TABELLA MOVIMENTI -->
+<div class="mt-5">
+  <app-movimenti-tabella [movimenti]="movimenti()">
+  </app-movimenti-tabella>
 </div>

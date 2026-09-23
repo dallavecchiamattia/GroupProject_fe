@@ -2,25 +2,22 @@ import { Directive, effect, inject, TemplateRef, ViewContainerRef } from '@angul
 import { AuthService } from '../services/auth.service';
 
 @Directive({
-  selector: '[ifAuthenticated]'
+  selector: '[ifAuthenticated]',
+  standalone: true,
 })
 export class IfAuthenticatedDirective {
-  private authSrv = inject(AuthService);
-  private templateRef = inject(TemplateRef);
-  private viewContainer = inject(ViewContainerRef);
+  private templateRef = inject(TemplateRef<any>);
+  private vcr = inject(ViewContainerRef);
+  private authService = inject(AuthService);
 
   constructor() {
     effect(() => {
-      // mostro e nascondo ogni volta che isAuthenticated cambia
-      this.updateView(this.authSrv.isAuthenticated());
-    });
-  }
+      const isAuth = this.authService.isAuthenticated();
 
-  private updateView(show: boolean) {
-    if (show) {
-      this.viewContainer.createEmbeddedView(this.templateRef);
-    } else {
-      this.viewContainer.clear();
-    }
+      this.vcr.clear();
+      if (isAuth) {
+        this.vcr.createEmbeddedView(this.templateRef);
+      }
+    });
   }
 }

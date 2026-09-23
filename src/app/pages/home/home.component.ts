@@ -9,7 +9,11 @@ import { MovimentiComponent } from '../../components/movimenti/movimenti.compone
 
 @Component({
   selector: 'app-home',
-  imports: [AsyncPipe, CurrencyPipe, DatePipe, RouterLink, MovimentiComponent],
+  imports: [
+    AsyncPipe,
+    CurrencyPipe,
+    RouterLink,
+    MovimentiComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })

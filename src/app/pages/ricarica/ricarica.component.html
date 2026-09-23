@@ -1,73 +1,65 @@
-<div class="container py-5">
-  <div class="row justify-content-center">
-    <div class="col-12 col-md-8 col-lg-6">
+<div class="ricarica-container">
+  <div class="form-card">
 
-      <div class="card shadow-sm">
-        <div class="card-body p-4">
+    <!-- Title & Eyebrow -->
+    <div class="card-header-custom">
+      <p class="section-eyebrow">Servizi</p>
+      <h2 class="form-title">Ricarica telefonica</h2>
+    </div>
 
-          <h2 class="mb-1">Ricarica telefonica</h2>
+    <form (ngSubmit)="effettuaRicarica()">
 
-          <form (ngSubmit)="effettuaRicarica()">
-
-            <div class="mb-3">
-              <label for="numeroTelefonico" class="form-label">
-                Numero telefonico
-              </label>
-
-              <input type="tel" class="form-control" id="numeroTelefonico" name="numeroTelefonico"
-                [(ngModel)]="numeroTelefonico" placeholder="+393331234567" required>
-            </div>
-
-            <div class="mb-3">
-              <label for="operatore" class="form-label">
-                Operatore
-              </label>
-
-              <select class="form-select" id="operatore" name="operatore" [(ngModel)]="operatore">
-                <option value="iliad">Iliad</option>
-                <option value="tim">TIM</option>
-                <option value="vodafone">Vodafone</option>
-                <option value="windtre">WindTre</option>
-                <option value="postemobile">PosteMobile</option>
-              </select>
-            </div>
-
-            <div class="mb-4">
-              <label for="taglio" class="form-label">
-                Importo
-              </label>
-
-              <select class="form-select" id="taglio" name="taglio" [(ngModel)]="taglio">
-                <option [ngValue]="5">€ 5</option>
-                <option [ngValue]="10">€ 10</option>
-                <option [ngValue]="20">€ 20</option>
-                <option [ngValue]="30">€ 30</option>
-                <option [ngValue]="50">€ 50</option>
-              </select>
-            </div>
-
-
-            @if (errorMessage()) {
-            <div class="text-danger text-center mb-3">
-              {{ errorMessage() }}
-            </div>
-            }
-
-            <button type="submit" class="btn btn-primary w-100" [disabled]="!numeroTelefonico">
-              Effettua ricarica
-            </button>
-
-          </form>
-
-          @if (ricaricaEffettuata) {
-          <p class="text-success text-center mt-3 mb-0">
-            Ricarica effettuata
-          </p>
-          }
-
-        </div>
+      <!-- Numero telefonico -->
+      <div class="form-group">
+        <label for="numeroTelefonico" class="form-label">Numero telefonico</label>
+        <input type="tel" class="form-control" id="numeroTelefonico" name="numeroTelefonico"
+          [(ngModel)]="numeroTelefonico" placeholder="+39 333 123 4567" required />
       </div>
 
-    </div>
+      <!-- Operatore -->
+      <div class="form-group">
+        <label for="operatore" class="form-label">Operatore</label>
+        <select class="form-control form-select" id="operatore" name="operatore" [(ngModel)]="operatore">
+          <option value="iliad">Iliad</option>
+          <option value="tim">TIM</option>
+          <option value="vodafone">Vodafone</option>
+          <option value="windtre">WindTre</option>
+          <option value="postemobile">PosteMobile</option>
+        </select>
+      </div>
+
+      <!-- Importo -->
+      <div class="form-group">
+        <label for="taglio" class="form-label">Importo</label>
+        <select class="form-control form-select" id="taglio" name="taglio" [(ngModel)]="taglio">
+          <option [ngValue]="5">€ 5,00</option>
+          <option [ngValue]="10">€ 10,00</option>
+          <option [ngValue]="20">€ 20,00</option>
+          <option [ngValue]="30">€ 30,00</option>
+          <option [ngValue]="50">€ 50,00</option>
+        </select>
+      </div>
+
+      <!-- Error Message -->
+      @if (errorMessage()) {
+      <div class="alert-message error-message">
+        {{ errorMessage() }}
+      </div>
+      }
+
+      <!-- Success Message -->
+      @if (ricaricaEffettuata) {
+      <div class="alert-message success-message">
+        ✓ Ricarica effettuata con successo!
+      </div>
+      }
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary" [disabled]="!numeroTelefonico">
+        Effettua ricarica
+      </button>
+
+    </form>
+
   </div>
 </div>

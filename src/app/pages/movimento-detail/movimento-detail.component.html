@@ -1,7 +1,11 @@
 <div class="container mt-4">
 
   <a [routerLink]="['/home']" class="btn btn-outline-secondary mb-4">
-    ← Torna alla Home
+    Torna alla Home
+  </a>
+
+  <a [routerLink]="['/movimenti']" class="btn btn-outline-secondary mb-4 float-end">
+    Vai ai movimenti
   </a>
 
   @if (movimento$ | async; as movimento) {

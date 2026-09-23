@@ -1,0 +1,117 @@
+.home-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #0b1120;
+  min-height: 100vh;
+}
+
+/* Welcome */
+.welcome-row {
+  margin-bottom: 28px;
+}
+
+.welcome-eyebrow {
+  font-size: 13px;
+  font-weight: 600;
+  color: #60a5fa;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 4px;
+}
+
+.welcome-title {
+  font-size: 30px;
+  font-weight: 800;
+  color: #f1f5f9;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+/* Balance card */
+.balance-card {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 55%, #3b82f6 100%);
+  border-radius: 20px;
+  padding: 32px 32px 28px;
+  margin-bottom: 40px;
+  box-shadow: 0 20px 45px -10px rgba(37, 99, 235, 0.45);
+}
+
+.balance-glow {
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(147, 197, 253, 0.4), transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.balance-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0 0 10px;
+  position: relative;
+}
+
+.balance-amount {
+  font-size: 42px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 18px;
+  letter-spacing: -0.02em;
+  position: relative;
+}
+
+/* Section header */
+.section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.section-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin: 0;
+}
+
+.section-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: #60a5fa;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.section-link:hover {
+  opacity: 0.75;
+}
+
+/* Empty / not logged states */
+.empty-state,
+.not-logged {
+  text-align: center;
+  padding: 60px 20px;
+  color: #64748b;
+}
+
+.empty-icon,
+.lock-icon {
+  display: block;
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+
+.empty-state p,
+.not-logged p {
+  font-size: 14px;
+  margin: 0;
+}

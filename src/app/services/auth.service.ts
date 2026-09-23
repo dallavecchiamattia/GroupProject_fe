@@ -26,13 +26,14 @@ export class AuthService {
     return !!this.currentUser();
   });
 
-  constructor() {
-    this.fetchUser().subscribe();
-  }
+  /*constructor() {
+    this.fetchUser().subscribe()
+  }*/
 
   fetchUser() {
-    return this.http.get<User>('/api/account/me')
+    return this.http.get<{ utente: User }>('/api/account/me')
       .pipe(
+        map(res => res.utente),
         catchError(() => {
           this.jwtSrv.removeToken();
           return of(null)
@@ -42,30 +43,46 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    return this.http.post<{ user: User, token: string }>('/api/login', { email, password })
-      .pipe(
-        tap(res => this.jwtSrv.setToken(res.token)),
-        map(res => res.user),
-        tap(user => this._currentUser.set(user))
-      );
-  }
-
-  register(email: string, password: string, confermaNuovaPassword: string, nomeTitolare: string, cognomeTitolare: string) {
-    return this.http.post<{ user: User, token: string }>('/api/register', {
-      email,
-      password,
-      confermaNuovaPassword,
-      nomeTitolare,
-      cognomeTitolare,
-    }).pipe(
-      tap(res => this.jwtSrv.setToken(res.token)),
+    return this.http.post<{ user: User, token: string }>(
+      '/api/login',
+      { email, password }
+    ).pipe(
+      tap(res => {
+        this.jwtSrv.setToken(res.token);
+        /*this.jwtSrv.setNomeTitolare(res.user.nomeTitolare);
+        this.jwtSrv.setCognomeTitolare(res.user.cognomeTitolare);*/
+      }),
       map(res => res.user),
       tap(user => this._currentUser.set(user))
     );
   }
 
+  register(email: string, password: string, confermaPassword: string, nomeTitolare: string, cognomeTitolare: string) {
+    return this.http.post<{ user: User, token: string }>('/api/register', {
+      email,
+      password,
+      confermaPassword,
+      nomeTitolare,
+      cognomeTitolare,
+    }).pipe(
+      tap(res => {
+        this.jwtSrv.setToken(res.token);
+        this.jwtSrv.setNomeTitolare(res.user.nomeTitolare);
+        this.jwtSrv.setCognomeTitolare(res.user.cognomeTitolare);
+      }),
+      map(res => res.user),
+      tap(user => this._currentUser.set(user))
+    );
+  }
+
+  // In AuthService
   logout() {
     this.jwtSrv.removeToken();
+    //this.jwtSrv.removeNomeTitolare();
+    //this.jwtSrv.removeCognomeTitolare();
+
     this._currentUser.set(null);
+
+    // window.location.href = '/login';
   }
 }
