@@ -1,0 +1,50 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col col-lg-4"></div>
+
+    <div class="col col-lg-4 col-md-12 border rounded p-4">
+      <h4 class="mb-4">Bonifico</h4>
+
+      <form [formGroup]="bonificoForm" (ngSubmit)="invia()">
+        <div class="form-outline mb-4">
+          <label class="form-label">IBAN destinatario</label>
+          <input class="form-control" type="text" formControlName="ibanDestinatario"
+            placeholder="Es. IT60X0542811101000000123456">
+        </div>
+
+        <div class="form-outline mb-4">
+          <label class="form-label">Importo</label>
+          <div class="input-group">
+            <span class="input-group-text">&euro;</span>
+            <input class="form-control" type="number" step="0.01" min="0.01" formControlName="importo">
+          </div>
+        </div>
+
+        @if (errorMessage()) {
+        <div class="text-danger mb-3">
+          {{ errorMessage() }}
+        </div>
+        }
+
+        @if (esito(); as esito) {
+        <div class="alert alert-success">
+          Bonifico effettuato con successo! Nuovo saldo: <strong>{{ esito.saldo | currency:'EUR' }}</strong>
+          <br>
+          <a [routerLink]="['/movimenti', esito.id]">Vedi il dettaglio del movimento</a>
+        </div>
+        }
+
+        <div class="text-center">
+          <button [disabled]="bonificoForm.invalid || isSubmitting()" type="submit"
+            class="btn btn-primary btn-block mb-4">
+            @if (isSubmitting()) {
+            Invio in corso...
+            } @else {
+            Invia bonifico
+            }
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

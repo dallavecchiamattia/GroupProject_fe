@@ -15,7 +15,9 @@ import { IfNotAuthenticatedDirective } from '../../utils/if-not-authenticated.di
     IfNotAuthenticatedDirective
   ],
   templateUrl: './navbar.component.html'
+  //styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
   protected authService = inject(AuthService);
+  //isAuthenticated = this.authService.isAuthenticated;
 }

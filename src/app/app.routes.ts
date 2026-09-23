@@ -6,20 +6,29 @@ import { MovimentoDetailComponent } from './pages/movimento-detail/movimento-det
 import { ProfiloComponent } from './pages/profilo/profilo.component';
 import { ListaMovimentiComponent } from './pages/lista-movimenti/lista-movimenti.component';
 import { authGuard } from './utils/auth.guard';
+import { LandingPageComponent } from './pages/landingPage/landingPage.component';
+import { RicaricaComponent } from './pages/ricarica/ricarica.component';
+import { BonificoComponent } from './pages/bonifico/bonifico.component';
 
 export const routes: Routes = [
+  {
+    path: '',
+    component: LandingPageComponent,
+    pathMatch: 'full'
+  },
   {
     path: 'login',
     component: LoginComponent
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'profilo',
     component: ProfiloComponent,
-    //canActivate: [authGuard]
+    canActivate: [authGuard]
   },
   {
     path: 'register',
@@ -34,8 +43,18 @@ export const routes: Routes = [
     component: ListaMovimentiComponent
   },
   {
+    path: 'ricarica',
+    component: RicaricaComponent
+  },
+  {
+    path: 'bonifici',
+    component: BonificoComponent,
+    canActivate: [authGuard]
+  },
+  {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'
   }
+
 ];

@@ -1,9 +1,68 @@
-<h2 class="mb-4">I tuoi movimenti:</h2>
+<h2 class="mb-4">I tuoi movimenti</h2>
+
+<div class="card mb-4">
+  <div class="card-body">
+
+    <div class="row g-3">
+
+      <!-- Categoria -->
+      <div class="col-md-4">
+        <label for="categoria" class="form-label">
+          Categoria
+        </label>
+
+        <select id="categoria" class="form-select" [(ngModel)]="categoriaId">
+          <option value="">Tutte le categorie</option>
+
+          @for (categoria of categorie; track categoria.id) {
+          <option [value]="categoria.id">
+            {{ categoria.nomeCategoria }}
+          </option>
+          }
+        </select>
+      </div>
+
+      <!-- Data inizio -->
+      <div class="col-md-3">
+        <label for="dataInizio" class="form-label">
+          Da
+        </label>
+
+        <input id="dataInizio" type="date" class="form-control" [(ngModel)]="dataInizio" />
+      </div>
+
+      <!-- Data fine -->
+      <div class="col-md-3">
+        <label for="dataFine" class="form-label">
+          A
+        </label>
+
+        <input id="dataFine" type="date" class="form-control" [(ngModel)]="dataFine" />
+      </div>
+
+      <!-- Pulsanti -->
+      <div class="col-md-2 d-flex align-items-end gap-2">
+        <button class="btn btn-primary" (click)="applicaFiltri()">
+          Filtra
+        </button>
+
+        <button class="btn btn-outline-secondary" (click)="resetFiltri()">
+          Reset
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
 
 <div class="row row-cols-1 row-cols-md-4 g-6 mt-5">
-  @for(movimenti of movimenti(); track movimenti.id) {
+
+  @for (movimento of movimenti(); track movimento.id) {
   <div class="col">
-    <app-movimento-card [movimenti]="movimenti"></app-movimento-card>
+    <app-movimento-card [movimenti]="movimento">
+    </app-movimento-card>
   </div>
   }
+
 </div>

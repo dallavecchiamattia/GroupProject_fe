@@ -29,3 +29,8 @@ export type AccountMe = {
   saldo: number;
   ultimiMovimenti: Movimento[];
 };
+
+export type BonificoRequest = {
+  ibanDestinatario: string;
+  importo: number;
+};
