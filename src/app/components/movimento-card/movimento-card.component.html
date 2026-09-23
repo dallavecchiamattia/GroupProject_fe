@@ -1,18 +1,24 @@
 <div class="mov-card">
   <div class="mov-card-header">
-    <h5 class="mov-card-title">
-      {{ movimenti().categoria.nomeCategoria }}</h5>
+    <div class="mov-card-title-row">
+      <div class="mov-card-icon">
+        {{ movimenti().importo < 0 ? '↓' : '↑' }} </div>
 
-    <span class="mov-card-amount" [class.negative]="movimenti().importo < 0" [class.positive]="movimenti().importo > 0">
-      {{ movimenti().importo | currency }}
-    </span>
+          <h5 class="mov-card-title">
+            {{ movimenti().categoria.nomeCategoria }}</h5>
+
+      </div>
+      <span class="mov-card-amount" [class.negative]="movimenti().importo < 0"
+        [class.positive]="movimenti().importo > 0">
+        {{ movimenti().importo | currency }}
+
+      </span>
+    </div>
+    <h6 class="mov-card-subtitle">
+      {{ movimenti().descrizioneEstesa }}</h6>
+
+    <p class="mov-card-date">
+      {{ movimenti().data }}</p>
+
+    <button class="mov-card-btn" [routerLink]="['/movimenti', movimenti().id]">Dettagli</button>
   </div>
-
-  <h6 class="mov-card-subtitle">
-    {{ movimenti().descrizioneEstesa }}</h6>
-
-  <p class="mov-card-date">
-    {{ movimenti().data }}</p>
-
-  <button class="mov-card-btn" [routerLink]="['/movimenti', movimenti().id]">Dettagli</button>
-</div>
