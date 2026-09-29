@@ -1,10 +1,29 @@
 <section class="landing">
-  <h1>NomeBanca</h1>
-  <p>Gestisci il tuo conto corrente in modo semplice e sicuro.</p>
+  <div class="landing-glow"></div>
 
-  <div class="landing-actions">
-    <a routerLink="/login">Accedi</a>
-    <br>
-    <a routerLink="/register">Registrati</a>
+  <div class="landing-content">
+    <span class="landing-badge">Il tuo conto, ovunque tu sia</span>
+
+    <h1 class="landing-title">Banca Lume</h1>
+    <p class="landing-subtitle">Gestisci il tuo conto corrente in modo semplice e sicuro.</p>
+
+    @if (!auth.isAuthenticated()) {
+    <div class="landing-actions">
+      <a routerLink="/login" class="btn-primary">Accedi</a>
+      <a routerLink="/register" class="btn-secondary">Registrati</a>
+    </div>
+    }
+
+    <div class="landing-features">
+      <div class="feature">
+        <span class="feature-text">Bonifici istantanei</span>
+      </div>
+      <div class="feature">
+        <span class="feature-text">Sicurezza garantita</span>
+      </div>
+      <div class="feature">
+        <span class="feature-text">Sempre a portata di mano</span>
+      </div>
+    </div>
   </div>
 </section>

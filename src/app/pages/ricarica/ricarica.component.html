@@ -1,25 +1,22 @@
-<div class="ricarica-container">
-  <div class="form-card">
+<div class="ricarica-page">
 
-    <!-- Title & Eyebrow -->
-    <div class="card-header-custom">
-      <p class="section-eyebrow">Servizi</p>
-      <h2 class="form-title">Ricarica telefonica</h2>
-    </div>
-
+  <div class="ricarica-card">
     <form (ngSubmit)="effettuaRicarica()">
 
-      <!-- Numero telefonico -->
-      <div class="form-group">
-        <label for="numeroTelefonico" class="form-label">Numero telefonico</label>
-        <input type="tel" class="form-control" id="numeroTelefonico" name="numeroTelefonico"
+      <div class="page-header">
+        <p class="page-eyebrow">Servizi</p>
+        <h2 class="page-title">Ricarica telefonica</h2>
+      </div>
+
+      <div class="field">
+        <label for="numeroTelefonico" class="field-label">Numero telefonico</label>
+        <input id="numeroTelefonico" name="numeroTelefonico" class="field-input" type="tel"
           [(ngModel)]="numeroTelefonico" placeholder="+39 333 123 4567" required />
       </div>
 
-      <!-- Operatore -->
-      <div class="form-group">
-        <label for="operatore" class="form-label">Operatore</label>
-        <select class="form-control form-select" id="operatore" name="operatore" [(ngModel)]="operatore">
+      <div class="field">
+        <label for="operatore" class="field-label">Operatore</label>
+        <select id="operatore" name="operatore" class="field-input" [(ngModel)]="operatore">
           <option value="iliad">Iliad</option>
           <option value="tim">TIM</option>
           <option value="vodafone">Vodafone</option>
@@ -28,10 +25,9 @@
         </select>
       </div>
 
-      <!-- Importo -->
-      <div class="form-group">
-        <label for="taglio" class="form-label">Importo</label>
-        <select class="form-control form-select" id="taglio" name="taglio" [(ngModel)]="taglio">
+      <div class="field">
+        <label for="taglio" class="field-label">Importo</label>
+        <select id="taglio" name="taglio" class="field-input" [(ngModel)]="taglio">
           <option [ngValue]="5">€ 5,00</option>
           <option [ngValue]="10">€ 10,00</option>
           <option [ngValue]="20">€ 20,00</option>
@@ -40,26 +36,23 @@
         </select>
       </div>
 
-      <!-- Error Message -->
       @if (errorMessage()) {
-      <div class="alert-message error-message">
+      <div class="form-error">
         {{ errorMessage() }}
       </div>
       }
 
-      <!-- Success Message -->
       @if (ricaricaEffettuata) {
-      <div class="alert-message success-message">
-        ✓ Ricarica effettuata con successo!
+      <div class="form-success">
+        <p class="success-title">✓ Ricarica effettuata con successo!</p>
       </div>
       }
 
-      <!-- Submit Button -->
-      <button type="submit" class="btn btn-primary" [disabled]="!numeroTelefonico">
+      <button class="btn-primary btn-submit" type="submit" [disabled]="!numeroTelefonico">
         Effettua ricarica
       </button>
 
     </form>
-
   </div>
+
 </div>

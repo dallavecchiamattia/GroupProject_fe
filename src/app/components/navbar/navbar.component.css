@@ -5,16 +5,19 @@
   top: 0;
   z-index: 100;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  display: block;
+  padding: 0;
 }
 
 .navbar-inner {
-  max-width: 1280px;
+  width: 100%;
+  /* fondamentale */
+  max-width: 75%;
   margin: 0 auto;
   padding: 16px 24px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  /* Mantiene Brand+Profilo a SX e Link a DX */
+  justify-content: flex-start;
   gap: 24px;
 }
 
@@ -32,16 +35,17 @@
 .navbar-content {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  /* Spinge link a destra */
-  width: 100%;
+  flex: 1;
+  /* al posto di width: 100% */
+  gap: 24px;
+  /* rimosso justify-content: space-between */
 }
 
 /* Profilo Utente (A SINISTRA vicino al logo) */
 .user-dropdown,
 .login-btn {
-  margin-right: auto;
-  /* Spinge i link che seguono verso l'estrema destra */
+  margin-left: auto;
+  /* al posto di margin-right: auto */
 }
 
 /* Link di Navigazione (TUTTI A DESTRA) */

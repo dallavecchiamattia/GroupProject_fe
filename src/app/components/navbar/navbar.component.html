@@ -22,7 +22,7 @@
         </li>
       </ul>
 
-      <div ngbDropdown class="user-dropdown">
+      <div ngbDropdown placement="bottom-end" class="user-dropdown">
         <button type="button" class="user-btn" id="userMenu" ngbDropdownToggle>
           @if (authService.currentUser(); as user) {
           <span class="user-avatar">{{ user.nomeTitolare[0] }}{{ user.cognomeTitolare[0] }}</span>

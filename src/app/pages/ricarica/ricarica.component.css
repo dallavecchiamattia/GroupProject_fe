@@ -1,147 +1,199 @@
-/* Layout Centrato */
-.ricarica-container {
-  max-width: 540px;
+.ricarica-page {
+  max-width: 1100px;
   margin: 0 auto;
   padding: 48px 24px 80px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: #0b1120;
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   box-sizing: border-box;
 }
 
-/* Card del Form */
-.form-card {
-  width: 100%;
-  background: #0f172a;
+/* Card */
+.ricarica-card {
+  position: relative;
+  overflow: hidden;
+  max-width: 480px;
+  margin: 0 auto;
+  background: #111a2e;
   border: 1px solid #1e293b;
   border-radius: 20px;
-  padding: 36px 32px;
-  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.5);
+  padding: 32px;
+  box-shadow: 0 20px 45px -20px rgba(0, 0, 0, 0.6);
 }
 
-/* Header della Card */
-.card-header-custom {
-  margin-bottom: 28px;
+/* Bagliore decorativo */
+.ricarica-card::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.22), transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
 }
 
-.section-eyebrow {
-  font-size: 12px;
+.ricarica-card form {
+  position: relative;
+}
+
+/* Header */
+.page-header {
+  margin: 0 0 24px;
+}
+
+.page-eyebrow {
+  font-size: 13px;
   font-weight: 600;
   color: #60a5fa;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin: 0 0 6px;
+  letter-spacing: 0.06em;
+  margin: 0 0 4px;
 }
 
-.form-title {
-  font-size: 26px;
+.page-title {
+  font-size: 30px;
   font-weight: 800;
   color: #f1f5f9;
   margin: 0;
   letter-spacing: -0.02em;
 }
 
-/* Gruppi e Field */
-.form-group {
-  margin-bottom: 20px;
+/* Fields */
+.field {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
+  margin-bottom: 20px;
 }
 
-.form-label {
-  font-size: 13px;
+.field-label {
+  font-size: 12px;
   font-weight: 600;
   color: #94a3b8;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin: 0;
+  letter-spacing: 0.05em;
 }
 
-.form-control {
+.field-input {
   width: 100%;
-  padding: 12px 16px;
-  background-color: #1e293b;
-  border: 1px solid #334155;
-  border-radius: 12px;
-  color: #f8fafc;
-  font-size: 15px;
-  outline: none;
   box-sizing: border-box;
-  transition: all 0.15s ease;
+  font-size: 14px;
+  color: #f1f5f9;
+  background: #0b1120;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
 
-.form-control::placeholder {
-  color: #475569;
+.field-input::placeholder {
+  color: #64748b;
 }
 
-.form-control:focus {
+.field-input:focus {
   border-color: #3b82f6;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
-  background-color: #1e293b;
 }
 
-/* Personalizzazione Select */
-select.form-control {
+/* Stato di errore dopo l'interazione (classi aggiunte da Angular) */
+.field-input.ng-invalid.ng-touched {
+  border-color: #f87171;
+}
+
+.field-input.ng-invalid.ng-touched:focus {
+  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.25);
+}
+
+/* Select con freccia personalizzata */
+select.field-input {
   appearance: none;
   cursor: pointer;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%3c94a3b8' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+  padding-right: 40px;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%2394a3b8' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right 14px center;
   background-size: 12px;
-  padding-right: 40px;
 }
 
-/* Pulsante Primary */
-.btn-primary {
-  width: 100%;
-  padding: 14px 20px;
-  margin-top: 8px;
-  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
-  border: none;
+select.field-input option {
+  background: #0b1120;
+  color: #f1f5f9;
+}
+
+/* Messaggi */
+.form-error {
+  font-size: 13px;
+  color: #fca5a5;
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 20px;
+}
+
+.form-success {
+  background: rgba(52, 211, 153, 0.1);
+  border: 1px solid rgba(52, 211, 153, 0.35);
   border-radius: 12px;
-  color: #ffffff;
-  font-size: 15px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.success-title {
+  font-size: 14px;
   font-weight: 700;
+  color: #34d399;
+  margin: 0;
+}
+
+/* Submit */
+.btn-primary {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 18px;
   cursor: pointer;
-  box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.4);
-  transition: all 0.15s ease;
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  box-shadow: 0 8px 20px -8px rgba(37, 99, 235, 0.7);
+  transition: opacity 0.15s, transform 0.1s;
 }
 
 .btn-primary:hover:not(:disabled) {
-  opacity: 0.95;
-  transform: translateY(-1px);
-  box-shadow: 0 12px 24px -5px rgba(37, 99, 235, 0.5);
+  opacity: 0.9;
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(1px);
 }
 
 .btn-primary:disabled {
-  background: #1e293b;
-  color: #475569;
+  opacity: 0.45;
   cursor: not-allowed;
   box-shadow: none;
 }
 
-/* Messaggi di Stato (Errore e Successo) */
-.alert-message {
-  padding: 12px 16px;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 500;
-  text-align: center;
-  margin-bottom: 20px;
+.btn-submit {
+  width: 100%;
+  padding: 14px 18px;
+  font-size: 15px;
 }
 
-.error-message {
-  background-color: rgba(239, 68, 68, 0.1);
-  border: 1px solid rgba(239, 68, 68, 0.25);
-  color: #f87171;
-}
+/* Responsive */
+@media (max-width: 560px) {
+  .ricarica-page {
+    padding: 32px 16px 60px;
+  }
 
-.success-message {
-  background-color: rgba(34, 197, 94, 0.1);
-  border: 1px solid rgba(34, 197, 94, 0.25);
-  color: #4ade80;
+  .page-title {
+    font-size: 24px;
+  }
+
+  .ricarica-card {
+    padding: 24px 20px;
+  }
 }

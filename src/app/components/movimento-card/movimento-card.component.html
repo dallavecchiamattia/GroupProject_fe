@@ -18,7 +18,7 @@
       {{ movimenti().descrizioneEstesa }}</h6>
 
     <p class="mov-card-date">
-      {{ movimenti().data }}</p>
+      {{ movimenti().data | date:'dd/MM/yyyy' }}</p>
 
     <button class="mov-card-btn" [routerLink]="['/movimenti', movimenti().id]">Dettagli</button>
   </div>

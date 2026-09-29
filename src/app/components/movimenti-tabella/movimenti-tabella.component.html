@@ -1,10 +1,10 @@
-<div class="table-responsive">
-  <table class="table table-hover">
+<div class="mov-wrapper">
+  <table class="mov-table">
 
     <thead>
       <tr>
         <th>Categoria</th>
-        <th>Importo</th>
+        <th class="col-num">Importo</th>
         <th>Descrizione</th>
         <th>Data</th>
       </tr>
@@ -14,13 +14,24 @@
 
       @for (movimento of movimenti(); track movimento.id) {
       <tr>
-        <td>{{ movimento.categoria.nomeCategoria }}</td>
+        <td>
+          <span class="mov-badge">{{ movimento.categoria.nomeCategoria }}</span>
+        </td>
 
-        <td>{{ movimento.importo | currency:'EUR' }}</td>
+        <td class="col-num mov-amount" [class.neg]="movimento.importo < 0" [class.pos]="movimento.importo > 0">
+          {{ movimento.importo | currency:'EUR' }}
+        </td>
 
-        <td>{{ movimento.descrizioneEstesa }}</td>
+        <td class="mov-desc">{{ movimento.descrizioneEstesa }}</td>
 
-        <td>{{ movimento.data }}</td>
+        <td class="mov-date">
+          <span class="mov-date-day">{{ movimento.data | date:'dd/MM/yyyy' }}</span>
+          <span class="mov-date-time">{{ movimento.data | date:'HH:mm' }}</span>
+        </td>
+      </tr>
+      } @empty {
+      <tr>
+        <td colspan="4" class="mov-empty">Nessun movimento trovato</td>
       </tr>
       }
 

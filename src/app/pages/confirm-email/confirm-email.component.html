@@ -1,0 +1,18 @@
+<div class="confirm-page">
+  <div class="confirm-card">
+    @if (confirmed()) {
+    <div class="confirm-icon success">✓</div>
+    <h1>Sei registrato con successo</h1>
+    <p>Clicca il tasto Home per iniziare a navigare.</p>
+    <a class="btn-home" routerLink="/home">Home</a>
+    } @else if (errorMessage()) {
+    <div class="confirm-icon error">!</div>
+    <h1>Conferma non riuscita</h1>
+    <p>{{ errorMessage() }}</p>
+    <p class="hint">Se hai già confermato la registrazione, accedi con le tue credenziali.</p>
+    <a class="btn-home" routerLink="/login">Vai al login</a>
+    } @else {
+    <p>Conferma della registrazione in corso...</p>
+    }
+  </div>
+</div>

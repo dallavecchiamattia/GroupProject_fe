@@ -26,10 +26,13 @@ export class AuthService {
     return !!this.currentUser();
   });
 
-  /*constructor() {
-    this.fetchUser().subscribe()
-  }*/
-
+  // usato da login e conferma email: salva il token e imposta l'utente corrente
+  private startSession = (res: { user: User, token: string }) => {
+    this.jwtSrv.setToken(res.token);
+    this.jwtSrv.setNomeTitolare(res.user.nomeTitolare);
+    this.jwtSrv.setCognomeTitolare(res.user.cognomeTitolare);
+    this._currentUser.set(res.user);
+  };
   fetchUser() {
     return this.http.get<{ utente: User }>('/api/account/me')
       .pipe(
@@ -47,13 +50,8 @@ export class AuthService {
       '/api/login',
       { email, password }
     ).pipe(
-      tap(res => {
-        this.jwtSrv.setToken(res.token);
-        /*this.jwtSrv.setNomeTitolare(res.user.nomeTitolare);
-        this.jwtSrv.setCognomeTitolare(res.user.cognomeTitolare);*/
-      }),
-      map(res => res.user),
-      tap(user => this._currentUser.set(user))
+      tap(this.startSession),
+      map(res => res.user)
     );
   }
 
@@ -63,8 +61,13 @@ export class AuthService {
     });
   }
 
+  // la conferma dell'email autentica direttamente l'utente (il backend restituisce user + token, come il login)
   confirmEmail(token: string) {
-    return this.http.get<User>(`/api/register/confirm/${token}`);
+    return this.http.get<{ user: User, token: string }>(`/api/register/confirm/${token}`)
+      .pipe(
+        tap(this.startSession),
+        map(res => res.user)
+      );
   }
 
   resendConfirmation(email: string) {

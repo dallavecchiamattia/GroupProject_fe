@@ -1,54 +1,55 @@
-<div class="container mt-4">
+<div class="detail-page">
 
-  <a [routerLink]="['/home']" class="btn btn-outline-secondary mb-4">
-    Torna alla Home
-  </a>
-
-  <a [routerLink]="['/movimenti']" class="btn btn-outline-secondary mb-4 float-end">
-    Vai ai movimenti
-  </a>
+  <div class="detail-nav">
+    <a [routerLink]="['/home']" class="btn-outline-primary">← Torna alla Home</a>
+    <a [routerLink]="['/movimenti']" class="btn-outline-primary">Vai ai movimenti</a>
+  </div>
 
   @if (movimento$ | async; as movimento) {
-  <div class="card">
-    <div class="card-header">
-      <h2>Dettaglio movimento</h2>
+  <div class="detail-card">
+    <div class="detail-header">
+      <h2 class="detail-title">Dettaglio movimento</h2>
+      <span class="detail-amount" [class.negative]="movimento.importo < 0" [class.positive]="movimento.importo > 0">
+        {{ movimento.importo | currency }}
+      </span>
     </div>
 
-    <div class="card-body">
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <strong>ID Movimento</strong>
-          <p>{{ movimento.id }}</p>
+    <div class="detail-body">
+      <div class="detail-grid">
+        <div class="detail-field">
+          <span class="detail-label">ID Movimento</span>
+          <span class="detail-value mono">{{ movimento.id }}</span>
         </div>
-        <div class="col-md-6">
-          <strong>ID Conto Corrente</strong>
-          <p>{{ movimento.contoCorrenteId }}</p>
+        <div class="detail-field">
+          <span class="detail-label">ID Conto Corrente</span>
+          <span class="detail-value mono">{{ movimento.contoCorrenteId }}</span>
         </div>
-      </div>
 
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <strong>Data</strong>
-          <p>{{ movimento.data | date:'dd/MM/yyyy' }}</p>
+        <div class="detail-field">
+          <span class="detail-label">Data</span>
+          <span class="detail-value">{{ movimento.data | date:'dd/MM/yyyy HH:mm' }}</span>
         </div>
-        <div class="col-md-6">
-          <strong>Categoria</strong>
-          <p>{{ movimento.categoria.nomeCategoria }}</p>
+        <div class="detail-field">
+          <span class="detail-label">Categoria</span>
+          <span class="detail-value">
+            <span class="category-badge">{{ movimento.categoria.nomeCategoria }}</span>
+          </span>
         </div>
-      </div>
-      <div class="mb-3">
-        <strong>Categoria Movimento ID</strong>
-        <p>{{ movimento.categoriaMovimentoId }}</p>
-      </div>
 
-      <div class="mb-3">
-        <strong>Descrizione Estesa</strong>
-        <p>{{ movimento.descrizioneEstesa }}</p>
+        <div class="detail-field full">
+          <span class="detail-label">Categoria Movimento ID</span>
+          <span class="detail-value mono">{{ movimento.categoriaMovimentoId }}</span>
+        </div>
+
+        <div class="detail-field full">
+          <span class="detail-label">Descrizione Estesa</span>
+          <span class="detail-value">{{ movimento.descrizioneEstesa }}</span>
+        </div>
       </div>
     </div>
   </div>
   } @else {
-  <div class="alert alert-info">Caricamento del movimento...</div>
+  <div class="loading-state">Caricamento del movimento...</div>
   }
 
 </div>
