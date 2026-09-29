@@ -1,62 +1,65 @@
-<div class="movimenti-page">
+<div class="movimenti-page page-glow">
 
-  <!-- Header + Export -->
-  <div class="page-header">
-    <div>
-      <p class="page-eyebrow">Area personale</p>
-      <h2 class="page-title">I tuoi movimenti</h2>
+  <div class="movimenti-content">
+
+    <!-- Header + Export -->
+    <div class="page-header">
+      <div>
+        <p class="page-eyebrow">Area personale</p>
+        <h2 class="page-title">I tuoi movimenti</h2>
+      </div>
+
+      <div class="export-actions">
+        <button class="btn-export btn-export-csv" (click)="esportaCSV()">
+          Esporta CSV
+        </button>
+        <button class="btn-export btn-export-excel" (click)="esportaExcel()">
+          Esporta Excel
+        </button>
+      </div>
     </div>
 
-    <div class="export-actions">
-      <button class="btn-export btn-export-csv" (click)="esportaCSV()">
-        Esporta CSV
-      </button>
-      <button class="btn-export btn-export-excel" (click)="esportaExcel()">
-        Esporta Excel
-      </button>
+    <!-- Filtri -->
+    <div class="filters-card">
+      <div class="filters-grid">
+
+        <div class="field field-categoria">
+          <label for="categoria" class="field-label">Categoria</label>
+          <select id="categoria" class="field-input" [(ngModel)]="categoriaId">
+            <option value="">Tutte le categorie</option>
+            @for (categoria of categorie; track categoria.id) {
+            <option [value]="categoria.id">{{ categoria.nomeCategoria }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="dataInizio" class="field-label">Da</label>
+          <input id="dataInizio" type="date" class="field-input" [(ngModel)]="dataInizio" />
+        </div>
+
+        <div class="field">
+          <label for="dataFine" class="field-label">A</label>
+          <input id="dataFine" type="date" class="field-input" [(ngModel)]="dataFine" />
+        </div>
+
+        <div class="field field-limit">
+          <label for="limit" class="field-label">N. movimenti</label>
+          <input id="limit" type="number" min="1" step="1" class="field-input" placeholder="Tutti"
+            [(ngModel)]="limit" />
+        </div>
+
+        <div class="filters-actions">
+          <button class="btn-primary" (click)="applicaFiltri()">Filtra</button>
+          <button class="btn-ghost" (click)="resetFiltri()">Reset</button>
+        </div>
+
+      </div>
     </div>
-  </div>
 
-  <!-- Filtri -->
-  <div class="filters-card">
-    <div class="filters-grid">
-
-      <div class="field field-categoria">
-        <label for="categoria" class="field-label">Categoria</label>
-        <select id="categoria" class="field-input" [(ngModel)]="categoriaId">
-          <option value="">Tutte le categorie</option>
-          @for (categoria of categorie; track categoria.id) {
-          <option [value]="categoria.id">{{ categoria.nomeCategoria }}</option>
-          }
-        </select>
-      </div>
-
-      <div class="field">
-        <label for="dataInizio" class="field-label">Da</label>
-        <input id="dataInizio" type="date" class="field-input" [(ngModel)]="dataInizio" />
-      </div>
-
-      <div class="field">
-        <label for="dataFine" class="field-label">A</label>
-        <input id="dataFine" type="date" class="field-input" [(ngModel)]="dataFine" />
-      </div>
-
-      <div class="field field-limit">
-        <label for="limit" class="field-label">N. movimenti</label>
-        <input id="limit" type="number" min="1" step="1" class="field-input" placeholder="Tutti" [(ngModel)]="limit" />
-      </div>
-
-      <div class="filters-actions">
-        <button class="btn-primary" (click)="applicaFiltri()">Filtra</button>
-        <button class="btn-ghost" (click)="resetFiltri()">Reset</button>
-      </div>
-
+    <!-- Tabella -->
+    <div class="table-section">
+      <app-movimenti-tabella [movimenti]="movimenti()"></app-movimenti-tabella>
     </div>
-  </div>
 
-  <!-- Tabella -->
-  <div class="table-section">
-    <app-movimenti-tabella [movimenti]="movimenti()"></app-movimenti-tabella>
   </div>
-
-</div>

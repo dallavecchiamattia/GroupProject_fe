@@ -116,7 +116,7 @@
   margin: 0;
 }
 
-/* sfondo a tutta pagina */
+/* sfondo a tutta pagina 
 .home-page {
   position: relative;
   min-height: 100vh;
@@ -125,7 +125,7 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-/* glow, identico a quello della landing */
+/* glow, identico a quello della landing 
 .home-glow {
   position: absolute;
   top: 10%;
@@ -137,10 +137,11 @@
   pointer-events: none;
 }
 
-/* contenuto centrato, sopra il glow */
+/* contenuto centrato, sopra il glow 
 .home-content {
   position: relative;
   max-width: 1100px;
   margin: 0 auto;
   padding: 48px 24px 80px;
 }
+  */
