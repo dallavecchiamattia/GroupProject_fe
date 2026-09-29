@@ -1,7 +1,7 @@
 import { Component, DestroyRef, effect, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { catchError, throwError } from 'rxjs';
 
@@ -17,7 +17,6 @@ export class RegisterComponent {
   protected fb = inject(FormBuilder);
   protected authSrv = inject(AuthService);
   private destroyRef = inject(DestroyRef);
-  private router = inject(Router);
 
   registerForm = this.fb.group({
     email: ['', { validators: [Validators.required] }],
@@ -28,6 +27,7 @@ export class RegisterComponent {
   });
 
   errorMessage = signal<string | null>(null);
+  registered = signal(false);
 
   ngOnInit() {
     this.registerForm.valueChanges
@@ -48,7 +48,7 @@ export class RegisterComponent {
           })
         )
         .subscribe(() => {
-          this.router.navigate(['/login']);
+          this.registered.set(true);
         });
     }
   }

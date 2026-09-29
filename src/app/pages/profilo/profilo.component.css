@@ -1,0 +1,102 @@
+.profile-page {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.profile-header {
+  margin-bottom: 24px;
+}
+
+.profile-eyebrow {
+  font-size: 13px;
+  font-weight: 600;
+  color: #60a5fa;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 4px;
+}
+
+.profile-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #f1f5f9;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.profile-card {
+  background: #131c31;
+  border: 1px solid #1f2c45;
+  border-radius: 16px;
+  padding: 8px 24px;
+  margin-bottom: 24px;
+}
+
+.profile-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid #1f2c45;
+}
+
+.profile-row:last-child {
+  border-bottom: none;
+}
+
+.profile-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+  flex-shrink: 0;
+}
+
+.profile-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: #e2e8f0;
+  text-align: right;
+}
+
+.profile-value.mono {
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-size: 13px;
+  color: #93c5fd;
+}
+
+.btn-outline-primary {
+  background: transparent;
+  border: 1.5px solid #3b82f6;
+  color: #60a5fa;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.btn-outline-primary:hover {
+  background: #3b82f6;
+  color: #ffffff;
+}
+
+.not-logged {
+  text-align: center;
+  padding: 60px 20px;
+  color: #64748b;
+}
+
+.lock-icon {
+  display: block;
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+
+.not-logged p {
+  font-size: 14px;
+  margin: 0;
+}

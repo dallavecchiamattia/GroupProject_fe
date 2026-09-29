@@ -9,6 +9,7 @@ import { authGuard } from './utils/auth.guard';
 import { LandingPageComponent } from './pages/landingPage/landingPage.component';
 import { RicaricaComponent } from './pages/ricarica/ricarica.component';
 import { BonificoComponent } from './pages/bonifico/bonifico.component';
+import { ConfirmEmailComponent } from './pages/confirm-email/confirm-email.component';
 
 export const routes: Routes = [
   {
@@ -33,6 +34,10 @@ export const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'confirm/:token',
+    component: ConfirmEmailComponent
   },
   {
     path: 'movimenti/:id',

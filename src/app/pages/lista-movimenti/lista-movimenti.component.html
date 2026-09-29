@@ -56,6 +56,16 @@
         <input id="dataFine" type="date" class="form-control" [(ngModel)]="dataFine" />
       </div>
 
+
+      <!-- Numero movimenti -->
+      <div class="col-md-2">
+        <label for="limit" class="form-label">
+          N. movimenti
+        </label>
+
+        <input id="limit" type="number" min="1" step="1" class="form-control" placeholder="Tutti" [(ngModel)]="limit" />
+      </div>
+
       <!-- Pulsanti -->
       <div class="col-md-2 d-flex align-items-end gap-2">
 

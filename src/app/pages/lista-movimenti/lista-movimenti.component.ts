@@ -24,6 +24,7 @@ export class ListaMovimentiComponent implements OnInit {
   categoriaId = '';
   dataInizio = '';
   dataFine = '';
+  limit: number | null = null;
 
   ngOnInit() {
     this.movimentoSrv.fetch();
@@ -40,6 +41,7 @@ export class ListaMovimentiComponent implements OnInit {
       categoriaId: this.categoriaId || undefined,
       dataInizio: this.dataInizio || undefined,
       dataFine: this.dataFine || undefined,
+      limit: this.limit || undefined, // null, 0 o campo vuoto → nessun limite
     });
   }
 
@@ -47,6 +49,7 @@ export class ListaMovimentiComponent implements OnInit {
     this.categoriaId = '';
     this.dataInizio = '';
     this.dataFine = '';
+    this.limit = null;
 
     this.movimentoSrv.fetch();
   }

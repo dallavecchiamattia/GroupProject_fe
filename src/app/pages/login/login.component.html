@@ -23,6 +23,16 @@
         </div>
         }
 
+        @if (emailNotConfirmed()) {
+        @if (resendSent()) {
+        <div class="info-message">Email inviata: controlla la tua casella di posta.</div>
+        } @else {
+        <button class="btn-link" type="button" (click)="resendConfirmation()">
+          Reinvia email di conferma
+        </button>
+        }
+        }
+
         <button class="btn-submit" [disabled]="loginForm.invalid" type="submit">Sign In</button>
 
         <button class="btn-link" type="button" routerLink="/register">

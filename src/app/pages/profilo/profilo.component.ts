@@ -7,7 +7,7 @@ import { CambioPasswordModalComponent } from './cambio-password-modal/cambio-pas
 
 @Component({
   selector: 'app-profilo',
-  imports: [AsyncPipe, DatePipe, RouterLink], // niente più CambioPasswordModalComponent qui
+  imports: [AsyncPipe, DatePipe], // niente più CambioPasswordModalComponent qui
   templateUrl: './profilo.component.html',
   styleUrl: './profilo.component.css',
 })

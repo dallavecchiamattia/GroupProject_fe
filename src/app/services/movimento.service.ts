@@ -11,6 +11,7 @@ export interface MovimentoFilters {
   categoriaId?: string;
   dataInizio?: string;
   dataFine?: string;
+  limit?: number;
 }
 
 @Injectable({
@@ -42,6 +43,10 @@ export class MovimentoService {
 
     if (filters?.dataFine) {
       params = params.set('dataFine', filters.dataFine);
+    }
+
+    if (filters?.limit) {
+      params = params.set('limit', filters.limit);
     }
 
     this.http

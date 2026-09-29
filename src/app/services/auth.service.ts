@@ -58,21 +58,17 @@ export class AuthService {
   }
 
   register(email: string, password: string, confermaPassword: string, nomeTitolare: string, cognomeTitolare: string) {
-    return this.http.post<{ user: User, token: string }>('/api/register', {
-      email,
-      password,
-      confermaPassword,
-      nomeTitolare,
-      cognomeTitolare,
-    }).pipe(
-      tap(res => {
-        this.jwtSrv.setToken(res.token);
-        this.jwtSrv.setNomeTitolare(res.user.nomeTitolare);
-        this.jwtSrv.setCognomeTitolare(res.user.cognomeTitolare);
-      }),
-      map(res => res.user),
-      tap(user => this._currentUser.set(user))
-    );
+    return this.http.post<User>('/api/register', {
+      email, password, confermaPassword, nomeTitolare, cognomeTitolare,
+    });
+  }
+
+  confirmEmail(token: string) {
+    return this.http.get<User>(`/api/register/confirm/${token}`);
+  }
+
+  resendConfirmation(email: string) {
+    return this.http.post<User>('/api/register/resend', { email });
   }
 
   // In AuthService

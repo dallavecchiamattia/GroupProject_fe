@@ -1,4 +1,15 @@
-@if(!authSrv.isAuthenticated()) {
+@if (registered()) {
+<div class="login-page">
+  <div class="login-wrapper">
+    <div class="login-card already-auth">
+      <div class="already-auth-icon">✉</div>
+      <h1>Controlla la tua email</h1>
+      <p>Ti abbiamo inviato un link per confermare la registrazione. Una volta confermata potrai accedere al conto.</p>
+      <a class="btn-submit btn-link-as-button" routerLink="/login">Vai al login</a>
+    </div>
+  </div>
+</div>
+} @else if (!authSrv.isAuthenticated()) {
 <div class="login-page">
   <div class="login-wrapper">
     <div class="login-card">
