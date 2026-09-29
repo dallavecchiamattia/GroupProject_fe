@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   styleUrl: './app.css',
   imports: [
     RouterOutlet,
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   ]
 })
 export class App {

@@ -13,7 +13,7 @@
 .landing-glow {
   position: absolute;
   top: -20%;
-  left: 50%;
+  left: 25%;
   transform: translateX(-50%);
   width: 900px;
   height: 900px;
@@ -21,10 +21,41 @@
   pointer-events: none;
 }
 
+/* immagine di sfondo: metà destra, a tutta altezza */
+.landing-bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  background-image: url('https://images.pexels.com/photos/33181601/pexels-photo-33181601.jpeg?auto=compress&cs=tinysrgb&w=1600');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+/* sfumatura sul bordo sinistro dell'immagine */
+.landing-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, #0b1120 0%, rgba(11, 17, 32, 0.55) 35%, rgba(11, 17, 32, 0) 100%),
+    linear-gradient(135deg, rgba(37, 99, 235, 0.18), transparent 60%);
+}
+
+.landing-inner {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .landing-content {
   position: relative;
-  text-align: center;
-  max-width: 640px;
+  text-align: left;
+  max-width: 520px;
 }
 
 .landing-badge {
@@ -63,7 +94,7 @@
 .landing-actions {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 14px;
   margin-bottom: 56px;
   flex-wrap: wrap;
@@ -106,7 +137,7 @@
 .landing-features {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 32px;
   flex-wrap: wrap;
 }
@@ -125,6 +156,32 @@
   font-size: 13px;
   font-weight: 500;
   color: #64748b;
+}
+
+/* tablet e mobile: immagine a tutto sfondo, scurita, testo centrato */
+@media (max-width: 900px) {
+  .landing-bg {
+    width: 100%;
+    opacity: 0.3;
+  }
+
+  .landing-bg::after {
+    background: rgba(11, 17, 32, 0.4);
+  }
+
+  .landing-glow {
+    left: 50%;
+  }
+
+  .landing-content {
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .landing-actions,
+  .landing-features {
+    justify-content: center;
+  }
 }
 
 @media (max-width: 480px) {

@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject, signal } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthService } from '../../services/auth.service';
@@ -13,6 +13,7 @@ import { IfNotAuthenticatedDirective } from '../../utils/if-not-authenticated.di
   standalone: true,
   imports: [
     RouterLink,
+    RouterLinkActive,
     NgbDropdownModule
   ],
   templateUrl: './navbar.component.html',
@@ -24,4 +25,9 @@ export class NavbarComponent {
   protected jwtSrv = inject(JwtService);
 
   currentUser = this.authService.fetchUser;
+
+  // stato del burger menu (visibile solo in responsive)
+  menuOpen = signal(false);
+  toggleMenu = () => this.menuOpen.update(open => !open);
+  closeMenu = () => this.menuOpen.set(false);
 }
