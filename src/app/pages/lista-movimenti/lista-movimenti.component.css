@@ -60,7 +60,7 @@
 }
 
 .btn-export-csv:hover {
-  background: rgba(52, 211, 153, 0.12);
+  background: rgba(96, 165, 250, 0.12);
 }
 
 .btn-export-excel {
@@ -69,7 +69,7 @@
 }
 
 .btn-export-excel:hover {
-  background: rgba(96, 165, 250, 0.12);
+  background: rgba(52, 211, 153, 0.12);
 }
 
 /* Filters card */
